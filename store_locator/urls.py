@@ -1,10 +1,11 @@
 from django.conf.urls import patterns, include, url
-
+from store_locator.views import index
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    ('^index/$', index),
     # Examples:
     # url(r'^$', 'store_locator.views.home', name='home'),
     # url(r'^store_locator/', include('store_locator.foo.urls')),
