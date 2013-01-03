@@ -9,3 +9,6 @@ def store_display(request):
 
 def branches_display(request):
 	return render_to_response('static/stores_branches.html', '', context_instance=RequestContext(request))
+
+def address(request):
+	return render_to_response('static/address_ask.html', '', context_instance=RequestContext(request))

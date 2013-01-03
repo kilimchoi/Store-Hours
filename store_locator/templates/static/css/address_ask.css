@@ -1,0 +1,67 @@
+html {
+  background-color: #dbe6ff;
+}
+#page-wrapper {
+  background-color: #dbe6ff;
+  position: relative;
+  width: 980px;
+  /* centers the document */
+  margin: 0 auto;
+  /*
+  hides anything drawn off canvas.
+  remove overflow and height to see things drawn off canvas.
+  */
+  overflow: hidden;
+  height: 1000px;
+}
+/* This makes absolutely positioned elements like p, h1,
+     and some bootstrap elements placed properly. */
+ body>p, body>h1, body>h2, body>h3, body>h4, body>h5, body>h6 {
+  margin-top: 0 !important;
+}
+/* Set floating dom-heading margins to 0 */
+[class*="dom-heading"] {
+  margin: 0;
+}
+div input.textinput.input.textinput-1 {
+  width: 178px;
+}
+div input.textinput.input.textinput-2 {
+  border: none;
+  width: 180px;
+}
+.dom-heading {
+  font-family:"josefin sans";
+  font-size: 18px;
+  line-height: 31px;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #ffffff;
+  border-left: none;
+  width: 628px;
+  height: 41px;
+  position: absolute;
+  top: 19px;
+  left: 17px;
+}
+div {
+  width: 200px;
+  height: 197px;
+  position: absolute;
+  top: 156px;
+  left: 198px;
+}
+div .btn.btn-1 {
+  text-align: center;
+  font-family:"helvetica neue";
+  font-size: 14px;
+  background: #e69c3d;
+  color: #fff5fc;
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.74902);
+  -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
+  -o-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
+  width: 220px;
+  height: 30px;
+}

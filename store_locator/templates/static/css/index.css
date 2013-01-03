@@ -1,8 +1,4 @@
 /* CSS Document */
-html
-{
-    background-color:#dbe6ff;
-}
 
 h1 {
   border-bottom: 1px solid #ffffff;
@@ -10,9 +6,12 @@ h1 {
   height: 91px;
   }
 
-
-#page-wrapper {
+body {
   background-color:#dbe6ff;
+  width: 100%;
+
+}
+#page-wrapper {
   position: relative;
   width: 980px;
   /* centers the document */

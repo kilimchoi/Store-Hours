@@ -1,7 +1,9 @@
-html {
-  background-color: #dbe6ff;
-}
+/* CSS Document */
+body {
+  background-color:#dbe6ff;
+  width: 100%;
 
+}
 #page-wrapper {
   background-color: #dbe6ff;
   position: relative;
