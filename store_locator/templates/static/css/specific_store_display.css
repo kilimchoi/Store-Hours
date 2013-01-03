@@ -1,0 +1,73 @@
+html {
+  background-color: #dbe6ff;
+}
+#page-wrapper {
+  background-color: #dbe6ff;
+  position: relative;
+  width: 980px;
+  /* centers the document */
+  margin: 0 auto;
+  /*
+  hides anything drawn off canvas.
+  remove overflow and height to see things drawn off canvas.
+  */
+  overflow: hidden;
+  height: 1000px;
+}
+/* This makes absolutely positioned elements like p, h1,
+     and some bootstrap elements placed properly. */
+ body>p, body>h1, body>h2, body>h3, body>h4, body>h5, body>h6 {
+  margin-top: 0 !important;
+}
+/* Set floating dom-heading margins to 0 */
+[class*="dom-heading"] {
+  margin: 0;
+}
+.dom-heading.dom-heading-1 {
+  background-color: #dbe6ff;
+  color: #1eb007;
+  font-family:"josefin sans";
+  font-size: 18px;
+  line-height: 31px;
+  width: 111px;
+  height: 31px;
+  position: absolute;
+  top: 250px;
+  left: 282px;
+}
+.dom-heading.dom-heading-2 {
+  background-color: #dbe6ff;
+  color: #3b3b3b;
+  font-family:"josefin sans";
+  font-size: 18px;
+  line-height: 31px;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #ffffff;
+  border-left: none;
+  width: 437px;
+  height: 70px;
+  position: absolute;
+  top: 247px;
+  left: 255px;
+}
+.table tbody tr td.td-1 {
+  font-family:"arial";
+  font-size: 15px;
+}
+.table tbody tr td.td-2 {
+  color: #ff1e0b;
+  font-weight: bold;
+  font-family:"arial";
+  font-size: 15px;
+}
+.table thead tr th.th-1 {
+  font-family:"arial";
+  font-size: 20px;
+}
+.table {
+  width: 440px;
+  position: absolute;
+  top: 335px;
+  left: 255px;
+}
