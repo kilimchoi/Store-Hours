@@ -1,18 +1,18 @@
 /* CSS Document */
-html {
-  background-color: #dbe6ff;
+html
+{
+    background-color:#dbe6ff;
 }
-h1 {  
+
+h1 {
   border-bottom: 1px solid #ffffff;
   width: 700px;
-  height: 74px;
-  text-align: center;
-  color: #a81015;
-}
+  height: 91px;
+  }
 
 
 #page-wrapper {
-  background-color: #dbe6ff;
+  background-color:#dbe6ff;
   position: relative;
   width: 980px;
   /* centers the document */
@@ -33,16 +33,31 @@ h1 {
 [class*="dom-heading"] {
   margin: 0;
 }
+.page-header {
+  border-bottom: 1px solid #ffffff;
+  width: 700px;
+  height: 74px;
+  position: absolute;
+  top: 149px;
+  left: 117px;
+}
+.page-header h1 {
+  text-align: center;
+  color: #a81015;
+}
 .dom-heading.dom-heading-1 {
   font-family:"josefin sans";
   font-size: 18px;
   line-height: 31px;
+  border-top: none;
+  border-right: none;
   border-bottom: 1px solid #ffffff;
+  border-left: none;
   width: 700px;
-  height: 133px;
+  height: 123px;
   position: absolute;
-  top: 265px;
-  left: 158px;
+  top: 278px;
+  left: 117px;
 }
 .dom-heading.dom-heading-2 {
   font-family:"sansita one";
@@ -51,8 +66,8 @@ h1 {
   width: 42px;
   height: 34px;
   position: absolute;
-  top: 496px;
-  left: 503px;
+  top: 531px;
+  left: 475px;
 }
 .dom-heading.dom-heading-3 {
   font-family:"Arial";
@@ -61,11 +76,11 @@ h1 {
   width: 52px;
   height: 31px;
   position: absolute;
-  top: 538px;
-  left: 152px;
+  top: 595px;
+  left: 100px;
 }
 div .btn.btn-1 {
-  text-align: left;
+  text-align: center;
   font-family:"helvetica neue";
   font-size: 14px;
   background: #e69c3d;
@@ -75,20 +90,20 @@ div .btn.btn-1 {
   -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
   -o-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
-  width: 192px;
+  width: 220px;
   height: 30px;
 }
 div .btn.btn-2 {
   background: #e69c3d;
+  color: #f7efe8;
   font-family:"helvetica neue";
   font-size: 14px;
-  color: #f7efe8;
+  text-align: center;
   text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.74902);
   -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
   -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
   -o-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.0470588), inset 0px 2px 4px 0px rgba(0, 0, 0, 0.14902);
-  width: 53px;
 }
 div input.textinput.input.textinput-1 {
   width: 178px;
@@ -101,29 +116,18 @@ div.div-1 {
   width: 213px;
   height: 113px;
   position: absolute;
-  top: 457px;
-  left: 631px;
+  top: 518px;
+  left: 594px;
 }
 div.div-2 {
-  width: 196px;
-  height: 116px;
+  width: 230px;
+  height: 120px;
   position: absolute;
-  top: 457px;
-  left: 220px;
-}
-.page-header {
-  width: 700px;
-  height: 74px;
-  position: absolute;
-  top: 145px;
-  left: 157px;
-}
-.page-header h1 {
-  text-align: center;
-  color: #a81015;
+  top: 521px;
+  left: 170px;
 }
 
 div select {
   margin: 0px;
-  width: 138px;
+  width: 163px;
 }
