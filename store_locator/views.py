@@ -6,3 +6,6 @@ def index(request):
 
 def store_display(request):
 	return render_to_response('static/specific_store_display.html', '', context_instance=RequestContext(request))
+
+def branches_display(request):
+	return render_to_response('static/stores_branches.html', '', context_instance=RequestContext(request))

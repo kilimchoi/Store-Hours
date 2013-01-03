@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from store_locator.views import index, store_display
+from store_locator.views import index, store_display, branches_display
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -7,6 +7,7 @@ from store_locator.views import index, store_display
 urlpatterns = patterns('',
     ('^index/$', index),
     ('^specific_store_display/$', store_display),
+    ('^stores_branches/$', branches_display),
     # Examples:
     # url(r'^$', 'store_locator.views.home', name='home'),
     # url(r'^store_locator/', include('store_locator.foo.urls')),
