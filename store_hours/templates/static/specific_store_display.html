@@ -10,11 +10,26 @@
     <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css"
     />
     <link href="{{STATIC_URL}}css/specific_store_display.css" media="screen" rel="stylesheet" type="text/css" />
-    
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyABL0H4Lpi2HeiWFTzqC_xXpN7cH4bt2AA&sensor=false">
+    </script>
+    <script>
+    function initialize()
+    {
+      var mapProp = {
+        center:new google.maps.LatLng(37.8717,122.2728),
+        zoom:5,
+        mapTypeId:google.maps.MapTypeId.ROADMAP
+      };
+      var map=new google.maps.Map(document.getElementById("googleMap")
+        ,mapProp);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script> 
     <title>Store hours for selected stores</title>
   </head>
    
   <body style="background-color: #dbe6ff;">
+  
     <div id="page-wrapper">
       
       <h2 class="dom-heading dom-heading-2">Following is the hours of "Store Branch" you selected.<br>
@@ -68,6 +83,7 @@
         </tbody>
       </table>
     </div>
+    <div id="googleMap" style="width:500px;height:380px;"></div>
   </body>
  
 </html>
