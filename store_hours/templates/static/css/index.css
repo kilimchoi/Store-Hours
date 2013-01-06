@@ -37,7 +37,7 @@ body {
   width: 700px;
   height: 74px;
   position: absolute;
-  top: 149px;
+  top: 10px;
   left: 117px;
 }
 .page-header h1 {
@@ -47,15 +47,14 @@ body {
 .dom-heading.dom-heading-1 {
   font-family:"josefin sans";
   font-size: 18px;
-  line-height: 31px;
   border-top: none;
   border-right: none;
   border-bottom: 1px solid #ffffff;
   border-left: none;
   width: 700px;
-  height: 123px;
+  height: 120px;
   position: absolute;
-  top: 278px;
+  top: 130px;
   left: 117px;
 }
 .dom-heading.dom-heading-2 {
@@ -65,7 +64,7 @@ body {
   width: 42px;
   height: 34px;
   position: absolute;
-  top: 531px;
+  top: 351px;
   left: 475px;
 }
 .dom-heading.dom-heading-3 {
@@ -75,8 +74,8 @@ body {
   width: 52px;
   height: 31px;
   position: absolute;
-  top: 665px;
-  left: 100px;
+  top: 445px;
+  left: 120px;
 }
 div .btn.btn-1 {
   text-align: center;
@@ -115,15 +114,15 @@ div.div-1 {
   width: 213px;
   height: 113px;
   position: absolute;
-  top: 518px;
+  top: 300px;
   left: 594px;
 }
 div.div-2 {
   width: 230px;
   height: 120px;
-  position: absolute;
-  top: 521px;
-  left: 170px;
+  position: relative;
+  top: 300px;
+  left: 180px;
 }
 
 div select {

@@ -3,11 +3,31 @@
     
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <meta name="viewport" content="width=device-width, initial-
+        scale=1, maximum-scale=1">
+        
         <link href="https://fonts.googleapis.com/css?family=Limelight|Flamenco|Federo|Yesteryear|Josefin Sans|Spinnaker|Sansita One|Handlee|Droid Sans|Oswald:400,300,700" media="screen" rel="stylesheet" type="text/css" />
+        
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
+
         <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/index.css" />
+
+        <script type="text/javascript">
+            $("#stores_branches").submit(function(e)) {
+              e.preventDefault();
+              serializedData = $("#stores_branches").serialize();
+              $.ajax({
+                url: "/specific_store_display/",
+                data: serializedData,
+                dataType: "json",
+                async: 'true',
+              })
+            }
+        </script>
+        
         <title>Welcome to Store Hours</title>
+    
     </head>
      
   <body style ="background-color: #dbe6ff;">
@@ -22,33 +42,40 @@
         to Berkeley, CA.&nbsp;</h1>
       <div class="div-1">
          <div>
-           <input class="textinput input.textinput-1" type="text" placeholder="Address">
-           <input class="textinput input.textinput-2" type="text" placeholder="(optional Address)">
-           <input class="textinput input.textinput-1" type="text" placeholder="City">
-           <input class="textinput input.textinput-1" type="text" placeholder="Zip Code">
+          <form action="/specific_store_display/" method="get"> 
+            <input class="textinput input.textinput-1" type="text" placeholder="Address" id="address1" name="address1">
+            <input class="textinput input.textinput-2" type="text" placeholder="(optional Address)" id="address2" name="address2">
+            <input class="textinput input.textinput-1" type="text" placeholder="City" id="city" name="city">
+            <input class="textinput input.textinput-1" type="text" placeholder="Zip Code" id="zip_code" name="zip_code">
+            <button class="btn btn-1">Find open stores near you
+            <br>
+            </button>
+          </form>
         </div>
-        <button class="btn btn-1">Find open stores near you
-          <br>
-        </button>
       </div>
       <div class="div-2">
         <div>
-           <input class="textinput input.textinput-1" type="text" placeholder="Address">
-           <input class="textinput input.textinput-2" type="text" placeholder="(optional Address)">
-           <input class="textinput input.textinput-1" type="text" placeholder="City">
-           <input class="textinput input.textinput-1" type="text" placeholder="Zip Code">
+          <form id="stores_branches" action="/specific_store_display/" method="GET">
+              <input class="textinput input.textinput-1" type="text" placeholder="Address" id="address1" name="address1">
+              <input class="textinput input.textinput-2" type="text" placeholder="(optional Address)" id="address2" name="address2">
+              <input class="textinput input.textinput-1" type="text" placeholder="City" id="city" name="city">
+              <input class="textinput input.textinput-1" type="text" placeholder="Zip Code" id="zip_code" name="zip_code">
+            <select name="store_branch">
+              <optgroup label="Banks">
+                <option value="Bank of America">Bank of America</option>
+                <option value="Chase Bank">Chase Bank</option>
+                <option value="Wells Fargo Bank">Wells Fargo Bank</option>
+              </optgroup>
+              <optgroup label="Grocery Stores">
+                <option value="Safeway">Safeway</option>
+                <option value="Whole Foods">Whole Foods</option>
+                <option value="Andronicos">Andronicos</option>
+              </optgroup>
+            </select>
+            <button class="btn btn-2">Find
+            <br></button>
+          </form>
         </div>
-        <select>
-          <option value="Bank of America">Bank of America</option>
-          <option value="Chase">Chase</option>
-          <option value="Wells Fargo">Wells Fargo</option>
-          <option value="Safeway">Safeway</option>
-          <option value="Whole Foods">Whole Foods</option>
-          <option value="Andronicos">Andronicos</option>
-        </select>
-        <button class="btn btn-2">Find
-          <br>
-        </button>
       </div>
       <h2 class="dom-heading dom-heading-2">OR</h2>
       <h2 class="dom-heading dom-heading-3">Stores:</h2>

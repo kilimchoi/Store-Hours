@@ -46,9 +46,8 @@ html {
   border-bottom: 1px solid #ffffff;
   border-left: none;
   width: 437px;
-  height: 70px;
   position: absolute;
-  top: 247px;
+  top: 90px;
   left: 255px;
 }
 .table tbody tr td.td-1 {
@@ -68,6 +67,10 @@ html {
 .table {
   width: 440px;
   position: absolute;
-  top: 335px;
+  top: 165px;
   left: 255px;
+}
+#googleMap.map {
+  top: -600px;
+  left: 400px;
 }
