@@ -12,30 +12,16 @@
     <link href="{{STATIC_URL}}css/specific_store_display.css" media="screen" rel="stylesheet" type="text/css" />
      <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
     </script>
-    <script>
-    geocoder = new google.maps.Geocoder();
-    function codeAddress(address_entered) {
-    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
-    var address = address_entered
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
-    geocoder.geocode( {'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map, 
-            position: results[0].geometry.location
-        });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
-    var myCenter = new google.maps.LatLng(37.8717, -122.2728);
+    <script>
+    var lat = {{ latitude }};
+    var lng = {{ longitude }};
+    var myCenter = new google.maps.LatLng(lat, lng);
     function initialize()
     {
       var mapProp = {
-        center:myCenter,
+        center: myCenter,
         zoom:15,
         mapTypeId:google.maps.MapTypeId.ROADMAP
       };

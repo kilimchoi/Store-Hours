@@ -1,8 +1,12 @@
-from django import forms
+from django.forms import ModelForm 
+from django.db import models
 
-class AddressForm(forms.Form):
-	address1 = forms.CharField()
-	address2 = forms.charField()
-	city = forms.charField()
-	zip_code = forms.IntegerField()
-	
+class Address(models.Model):
+	address1 = models.CharField()
+	address2 = models.CharField()
+	city = models.CharField()
+	zip_code = models.IntegerField()
+
+class AddressForm(ModelForm):
+	class Meta: 
+		model = Address

@@ -12,19 +12,8 @@
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" />
 
         <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/index.css" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
-        <script type="text/javascript">
-            $("#stores_branches").submit(function(e)) {
-              e.preventDefault();
-              serializedData = $("#stores_branches").serialize();
-              $.ajax({
-                url: "/specific_store_display/",
-                data: serializedData,
-                dataType: "json",
-                async: 'true',
-              })
-            }
-        </script>
         
         <title>Welcome to Store Hours</title>
     
@@ -42,20 +31,22 @@
         to Berkeley, CA.&nbsp;</h1>
       <div class="div-1">
          <div>
-          <form action="/specific_store_display/" method="get"> 
+          <form id="specific_store" action="/specific_store_display/" method="post"> 
+            {% csrf_token %}
             <input class="textinput input.textinput-1" type="text" placeholder="Address" id="address1" name="address1">
             <input class="textinput input.textinput-2" type="text" placeholder="(optional Address)" id="address2" name="address2">
             <input class="textinput input.textinput-1" type="text" placeholder="City" id="city" name="city">
             <input class="textinput input.textinput-1" type="text" placeholder="Zip Code" id="zip_code" name="zip_code">
-            <button class="btn btn-1">Find open stores near you
+            <input class="btn btn-1" id="Find" value="Find open stores near you" type="submit">
             <br>
-            </button>
+           
           </form>
         </div>
       </div>
       <div class="div-2">
         <div>
-          <form id="stores_branches" action="/specific_store_display/" method="GET">
+          <form id="stores_branches" action="/specific_store_display/"method="post">
+            {% csrf_token %}
               <input class="textinput input.textinput-1" type="text" placeholder="Address" id="address1" name="address1">
               <input class="textinput input.textinput-2" type="text" placeholder="(optional Address)" id="address2" name="address2">
               <input class="textinput input.textinput-1" type="text" placeholder="City" id="city" name="city">
@@ -72,8 +63,8 @@
                 <option value="Andronicos">Andronicos</option>
               </optgroup>
             </select>
-            <button class="btn btn-2">Find
-            <br></button>
+            <input class="btn btn-2" id="Find" value="Find" type="submit">
+            <br>
           </form>
         </div>
       </div>
