@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Limelight|Flamenco|Federo|Yesteryear|Josefin Sans|Spinnaker|Sansita One|Handlee|Droid Sans|Oswald:400,300,700"
+    media="screen" rel="stylesheet" type="text/css" />
+    <link href="{{ STATIC_URL }}css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="{{ STATIC_URL }}css/bootstrap-responsive.css" media="screen" rel="stylesheet" type="text/css"
+    />
+    <link href="{{ STATIC_URL }}css/stores_branches.css" media="screen" rel="stylesheet" type="text/css" />
+    <title>Stores Near You</title>
+  </head>
+   
+  <body style="background-color: #dbe6ff;">
+    <div id="page-wrapper">
+      <h2 class="dom-heading">
+        <div>Here's the list of branches for {{ store_branch }}
+          <br>
+          <div>
+            <br>
+          </div>
+        </div>
+      </h2>
+      <table class="table table-striped table-condensed table-bordered">
+        <thead>
+          <tr>
+            <th class="th-1">Address</th>
+            <th class="th-1">Name</th>
+            <th class="th-1">Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for store in stores %}
+            {% if forloop.first %}
+            <td class="td-1">
+              {{ store.vicinity}}
+              <br>
+            </td>
+            <td class="td-1">{{ store.name }}
+              <br>
+            </td>
+            <td> <a class="dom-link" href="/hours_display/{{ store.name }}">click for hours</a>
+              <br>
+            </td>
+          </tr>
+            {% else %}
+            <tr>
+            <td class="td-1">
+              {{ store.vicinity}}
+              <br>
+            </td>
+            <td class="td-1">{{ store.name }}
+              <br>
+            </td>
+            <td> <a class="dom-link" href="/hours_display/{{ store.name }}">click for hours</a>
+              <br>
+            </td>
+          </tr>
+            {% endif %}
+            {% endfor %}
+          <tr> 
+            {% for bank in banks %}
+            {% if forloop.first %}
+            <td class="td-1">
+              {{ bank.vicinity }}
+              <td class="td-1">{{ bank.name }}
+              <br>
+            </td>
+            <td> <a class="dom-link" href="/hours_display/{{ store.name }}">click for hours</a>
+              <br>
+            </td>
+          </tr>
+            {% else %}
+            <tr>
+            <td class="td-1">
+              {{ bank.vicinity}}
+              <br>
+            </td>
+            <td class="td-1">{{ bank.name }}
+              <br>
+            </td>
+            <td> <a class="dom-link" href="/hours_display/store_branch_name={{ store.name }}">click for hours</a>
+              <br>
+            </td>
+          </tr>
+            {% endif %}
+            {% endfor %}
+              <br>
+            </td>
+        </tbody>
+      </table>
+    </div>
+  </body>
+ 
