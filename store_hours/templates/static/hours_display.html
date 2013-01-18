@@ -57,35 +57,63 @@
         <tbody>
           <tr>
             <td class="td-1">Monday&nbsp;</td>
-            <td class="td-1">9am - 5pm</td>
+            {% if if_bank %}
+            <td class="td-1">{{ mon_fri_time }}</td>
+            {% else %}
+            <td class="td-1">{{ time }}</td>
+             {% endif %}
           </tr>
           <tr>
             <td class="td-1">Tuesday</td>
-            <td class="td-1">9am - 5pm</td>
+            {% if if_bank %}
+            <td class="td-1">{{ mon_fri_time }}</td>
+            {% else %}
+            <td class="td-1">{{ time }}</td>
+             {% endif %}
           </tr>
           <tr>
             <td class="td-1">Wednesday</td>
-            <td class="td-1">9am - 5pm</td>
+            {% if if_bank %}
+            <td class="td-1">{{ mon_fri_time }}</td>
+            {% else %}
+            <td class="td-1">{{ time }}</td>
+             {% endif %}
           </tr>
           <tr>
             <td class="td-1">Thursday</td>
-            <td class="td-1">9am - 5pm</td>
+             {% if if_bank %}
+            <td class="td-1">{{ mon_fri_time }}</td>
+            {% else %}
+            <td class="td-1">{{ time }}</td>
+             {% endif %}
           </tr>
           <tr>
             <td class="td-1">Friday</td>
-            <td class="td-1">9am - 5pm</td>
+             {% if if_bank %}
+            <td class="td-1">{{ mon_fri_time }}</td>
+            {% else %}
+            <td class="td-1">{{ time }}</td>
+             {% endif %}
           </tr>
           <tr>
             <td class="td-1">Saturday</td>
-            <td class="td-1">9am - 1pm
+            {% if if_bank %}
+             <td class="td-1">{{ sat_time }}</td>
+             {% else %}
+            <td class="td-1">{{ time }}
               <br>
             </td>
+            {% endif %}
           </tr>
           <tr>
             <td class="td-1">Sunday
               <br>
             </td>
-            <td class="td-2">CLOSED</td>
+             {% if if_bank %}
+              <td class="td-2">{{ sun_time }}</td>
+             {% else %}
+            <td class="td-1">{{ time }}</td>
+            {% endif %}
           </tr>
         </tbody>
       </table>

@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
-from address import Address, AddressForm
 from django.template.loader import render_to_string
+from datetime import datetime
 import urllib2
 import pprint
 import json
@@ -11,8 +11,64 @@ import json
 def index(request):
 	return render_to_response('static/index.html', '', context_instance=RequestContext(request))
 
-def hours_display(request, open_boolean, store_branch_name):
-	return render_to_response('static/hours_display.html', '', context_instance=RequestContext(request))
+def hours_display(request, store_branch_name, address):
+	time = ""
+	mon_fri_time = ""
+	sat_time = ""
+	sun_time = ""
+	open_boolean = False
+	if_bank = False
+	address = address.replace(" ", "")
+	open_or_not = ""
+	print "address is: ", address
+	if store_branch_name == "Safeway":
+		time = "6 am - 12 am"
+		if "5130Broadway" in address:
+			time = "24 hours"
+		if "6310 College" in address:
+			time = "24 hours"
+	if store_branch_name == "Whole Foods Market":
+		time = "8 am - 10 pm"
+	if store_branch_name == "Andronico's":
+		if "1850Solano" in address:
+			time = "8 am - 9 pm"
+		if "1550Shattuck" in address:
+			time = "8 am - 10 pm"
+	if store_branch_name == "Bank of America":
+		if_bank = True
+		mon_fri_time = "9 am - 6 pm" 
+		sat_time = "9 am - 2 pm"
+		sun_time = "CLOSED"
+	if store_branch_name == "Chase Bank":
+		if_bank = True
+		mon_fri_time = "9 am - 6 pm" 
+		sat_time = "9 am - 4 pm"
+		sun_time = "CLOSED"
+	if store_branch_name == "Wells Fargo Bank":
+		if_bank = True
+		mon_fri_time = "9 am - 6 pm" 
+		sat_time = "9 am - 6 pm"
+		sun_time = "CLOSED"
+	time_list = [int(t) for t in time.split() if t.isdigit()]
+	mon_fri_list = [int(t) for t in mon_fri_time.split() if t.isdigit()]
+	sat_list = [int(t) for t in sat_time.split() if t.isdigit()]
+	print "mon_fri_list is: ", mon_fri_list
+	now = datetime.now()
+	hour = now.hour
+	if time_list and hour >= time_list[0] and hour <= time_list[1] + 12:
+		open_boolean = True
+	if mon_fri_list and hour >= mon_fri_list[0] and hour <= mon_fri_list[1] + 12:
+		open_boolean = True
+	if sat_list and hour >= sat_list[0] and hour <= sat_list[1] + 1:
+		open_boolean = True
+	else:
+		open_boolean = False
+	if open_boolean:
+		open_or_not = "OPEN"
+	else:
+		open_or_not = "CLOSED"
+	dict = {"time": time, "mon_fri_time": mon_fri_time, "sat_time": sat_time, "sun_time": sun_time, "open_boolean": open_boolean, "store_branch": store_branch_name, "open_or_not": open_or_not, "if_bank": if_bank}
+	return render_to_response('static/hours_display.html', dict, context_instance=RequestContext(request))
 
 def stores_branches(request):	
 	if request.method == "POST":
@@ -63,15 +119,15 @@ def choose_best(stores):
 		stores = temp_stores
 	for store in stores:
 		if 'opening_hours' in store:
-			#if store['opening_hours']['open_now']:
-			curr = store
-			if first_time:
-				if store['name'] not in max_rating_stores:
+			if store['opening_hours']['open_now']:
+				curr = store
+				if first_time:
+					if store['name'] not in max_rating_stores:
+						max_rating_stores[store['name']] = store
+				else:
+					first_time = True
+					prev = curr
 					max_rating_stores[store['name']] = store
-			else:
-				first_time = True
-				prev = curr
-				max_rating_stores[store['name']] = store
         prev = curr
 	return max_rating_stores
 

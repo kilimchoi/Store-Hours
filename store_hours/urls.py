@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     ('^index/$', index),
     ('^stores_branches/$', stores_branches),
     ('^branches_display/$', branches_display),
-    ('^hours_display/(?P<store_branch_name>\w+)$', hours_display),
+    ('^hours_display/(?P<store_branch_name>[\w|\W]+)/(?P<address>[\w|\W]+)$', hours_display),
 
     # Examples:
     # url(r'^$', 'store_locator.views.home', name='home'),
