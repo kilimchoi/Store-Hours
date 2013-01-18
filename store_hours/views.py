@@ -11,9 +11,7 @@ import json
 def index(request):
 	return render_to_response('static/index.html', '', context_instance=RequestContext(request))
 
-def hours_display(request, store_branch_name=None):
-	print store_branch_name
-	#dict = {'store_branch': store_branch_name, 'open_boolean': open_boolean}
+def hours_display(request, open_boolean, store_branch_name):
 	return render_to_response('static/hours_display.html', '', context_instance=RequestContext(request))
 
 def stores_branches(request):	
@@ -51,15 +49,9 @@ def stores_branches(request):
 			banks = choose_best(banks)
 			new_banks = []
 			new_banks = banks.values()
-			open_boolean = True
-			if open_boolean:
-				open_or_not = 'OPEN'
-			else:
-				open_or_not = 'CLOSED'
 			dict = {'address1': address1, 'address2': address2, 'stores': new_stores, 'banks': new_banks}		
 			return render_to_response('static/stores_branches.html', dict, context_instance=RequestContext(request))
-	return render_to_response('static/stores_branches.html', '', context_instance=RequestContext(request))
-
+	
 def choose_best(stores):
 	max_rating_stores = {}
 	first_time = False
@@ -71,16 +63,15 @@ def choose_best(stores):
 		stores = temp_stores
 	for store in stores:
 		if 'opening_hours' in store:
-			if store['opening_hours']['open_now']:
-				curr = store
-				if first_time:
-					if store['name'] not in max_rating_stores:
-						"enters"
-						max_rating_stores[store['name']] = store
-				else:
-					first_time = True
-					prev = curr
+			#if store['opening_hours']['open_now']:
+			curr = store
+			if first_time:
+				if store['name'] not in max_rating_stores:
 					max_rating_stores[store['name']] = store
+			else:
+				first_time = True
+				prev = curr
+				max_rating_stores[store['name']] = store
         prev = curr
 	return max_rating_stores
 
@@ -135,17 +126,6 @@ def branches_display(request):
 				new_banks = banks
 			dict = {'address1': address1, 'address2': address2, 'stores': new_stores, 'banks': new_banks, 'store_branch': permanent_store_branch}		
 			return render_to_response('static/branches_display.html', dict, context_instance=RequestContext(request))
-	#next_page_token = jsonResponse2['next_page_token']
-	#next_page_token = next_page_token.encode('utf-8')
-	#print "next_page_token is: ", next_page_token
-	#nearby_search_url3 = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.874745,-122.264502&rankby=distance&types=store&hasNextPage=true&nextPage()=true&sensor=false&key=AIzaSyABL0H4Lpi2HeiWFTzqC_xXpN7cH4bt2AA&pagetoken=%s" % next_page_token
-	#req3 = urllib2.urlopen(nearby_search_url3)
-	#jsonResponse3 = json.loads(req3.read())
-	#pprint.pprint(jsonResponse3)
-	#for jsonres in jsonResponse3['results']:
-		#pprint.pprint(jsonres['name'])
-	return render_to_response('static/specific_store_display.html', '', context_instance=RequestContext(request))
-
 def choose_best_five(stores):
 	max_rating_stores = []
 	first_time = False
@@ -157,12 +137,12 @@ def choose_best_five(stores):
 		stores = temp_stores
 	for store in stores:
 		if 'opening_hours' in store:
-			if store['opening_hours']['open_now']:
-				if counter == 5:
-					break
-				else:
-					max_rating_stores.append(store)
-					counter = counter + 1
+			#if store['opening_hours']['open_now']:
+			if counter == 5:
+				break
+			else:
+				max_rating_stores.append(store)
+				counter = counter + 1
 	return max_rating_stores
 
 def choose_store_branch(store_name):

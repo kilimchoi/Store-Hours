@@ -164,4 +164,4 @@ LOGGING = {
         },
     }
 }
-EASY_MAPS_GOOGLE_KEY = "AIzaSyABL0H4Lpi2HeiWFTzqC_xXpN7cH4bt2AA"
+
