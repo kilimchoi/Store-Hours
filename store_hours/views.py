@@ -52,14 +52,13 @@ def hours_display(request, store_branch_name, address):
 	time_list = [int(t) for t in time.split() if t.isdigit()]
 	mon_fri_list = [int(t) for t in mon_fri_time.split() if t.isdigit()]
 	sat_list = [int(t) for t in sat_time.split() if t.isdigit()]
-	print "mon_fri_list is: ", mon_fri_list
 	now = datetime.now()
 	hour = now.hour
 	if time_list and hour >= time_list[0] and hour <= time_list[1] + 12:
 		open_boolean = True
 	if mon_fri_list and hour >= mon_fri_list[0] and hour <= mon_fri_list[1] + 12:
 		open_boolean = True
-	if sat_list and hour >= sat_list[0] and hour <= sat_list[1] + 1:
+	if sat_list and hour >= sat_list[0] and hour <= sat_list[1] + 12:
 		open_boolean = True
 	else:
 		open_boolean = False
