@@ -20,7 +20,6 @@ def hours_display(request, store_branch_name, address):
 	temp_add = address
 	address = address.replace(" ", "")
 	open_or_not = ""
-	print "address is: ", address
 	if store_branch_name == "Safeway":
 		time = "6 am - 12 am"
 		if "5130Broadway" in address:
@@ -66,15 +65,11 @@ def hours_display(request, store_branch_name, address):
 		open_or_not = "OPEN"
 	else:
 		open_or_not = "CLOSED"
-	print "temp_add is: ", temp_add
 	temp_add = urllib2.quote(temp_add)
 	geocode_url = "http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false" % temp_add
-	print "geocode_url is: ", geocode_url
 	req = urllib2.urlopen(geocode_url)
 	address_json = json.loads(req.read())
-	pprint.pprint(address_json)
 	if address_json['status'] == 'OK':
-		print "enters if loop"
 		latitude = address_json['results'][0]['geometry']['location']['lat']
 		longitude = address_json['results'][0]['geometry']['location']['lng']
 	dict = {"time": time, "mon_fri_time": mon_fri_time, "sat_time": sat_time, "sun_time": sun_time, "open_boolean": open_boolean, "store_branch": store_branch_name, "open_or_not": open_or_not, "if_bank": if_bank, 'latitude': latitude, 'longitude': longitude}
@@ -115,7 +110,6 @@ def stores_branches(request):
 			banks = choose_best(banks)
 			new_banks = []
 			new_banks = banks.values()
-			pprint.pprint(new_banks)
 			dict = {'address1': address1, 'address2': address2, 'stores': new_stores, 'banks': new_banks}		
 			return render_to_response('static/stores_branches.html', dict, context_instance=RequestContext(request))
 	
