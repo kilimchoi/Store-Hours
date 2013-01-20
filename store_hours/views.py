@@ -1,7 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.utils import simplejson
 from django.template.loader import render_to_string
 from datetime import datetime
 import urllib2
@@ -18,6 +17,7 @@ def hours_display(request, store_branch_name, address):
 	sun_time = ""
 	open_boolean = False
 	if_bank = False
+	temp_add = address
 	address = address.replace(" ", "")
 	open_or_not = ""
 	print "address is: ", address
@@ -66,7 +66,18 @@ def hours_display(request, store_branch_name, address):
 		open_or_not = "OPEN"
 	else:
 		open_or_not = "CLOSED"
-	dict = {"time": time, "mon_fri_time": mon_fri_time, "sat_time": sat_time, "sun_time": sun_time, "open_boolean": open_boolean, "store_branch": store_branch_name, "open_or_not": open_or_not, "if_bank": if_bank}
+	print "temp_add is: ", temp_add
+	temp_add = urllib2.quote(temp_add)
+	geocode_url = "http://maps.googleapis.com/maps/api/geocode/json?address=%s&sensor=false" % temp_add
+	print "geocode_url is: ", geocode_url
+	req = urllib2.urlopen(geocode_url)
+	address_json = json.loads(req.read())
+	pprint.pprint(address_json)
+	if address_json['status'] == 'OK':
+		print "enters if loop"
+		latitude = address_json['results'][0]['geometry']['location']['lat']
+		longitude = address_json['results'][0]['geometry']['location']['lng']
+	dict = {"time": time, "mon_fri_time": mon_fri_time, "sat_time": sat_time, "sun_time": sun_time, "open_boolean": open_boolean, "store_branch": store_branch_name, "open_or_not": open_or_not, "if_bank": if_bank, 'latitude': latitude, 'longitude': longitude}
 	return render_to_response('static/hours_display.html', dict, context_instance=RequestContext(request))
 
 def stores_branches(request):	
@@ -90,7 +101,7 @@ def stores_branches(request):
 			stores = []
 			banks = []
 			for store in store_json['results']:
-				if store['name'] == u'SAFEWAY' or store['name'] == u'Walgreens' or store['name'] == u'Whole Foods Market' or store['name'] == u"Andronico's":
+				if store['name'] == u'SAFEWAY' or store['name'] == u'Whole Foods Market' or store['name'] == u"Andronico's":
 					stores.append(store)
 			stores = choose_best(stores)
 			new_stores = []
@@ -104,6 +115,7 @@ def stores_branches(request):
 			banks = choose_best(banks)
 			new_banks = []
 			new_banks = banks.values()
+			pprint.pprint(new_banks)
 			dict = {'address1': address1, 'address2': address2, 'stores': new_stores, 'banks': new_banks}		
 			return render_to_response('static/stores_branches.html', dict, context_instance=RequestContext(request))
 	
@@ -181,6 +193,7 @@ def branches_display(request):
 				new_banks = banks
 			dict = {'address1': address1, 'address2': address2, 'stores': new_stores, 'banks': new_banks, 'store_branch': permanent_store_branch}		
 			return render_to_response('static/branches_display.html', dict, context_instance=RequestContext(request))
+
 def choose_best_five(stores):
 	max_rating_stores = []
 	first_time = False
@@ -192,12 +205,12 @@ def choose_best_five(stores):
 		stores = temp_stores
 	for store in stores:
 		if 'opening_hours' in store:
-			#if store['opening_hours']['open_now']:
-			if counter == 5:
-				break
-			else:
-				max_rating_stores.append(store)
-				counter = counter + 1
+			if store['opening_hours']['open_now']:
+				if counter == 5:
+					break
+				else:
+					max_rating_stores.append(store)
+					counter = counter + 1
 	return max_rating_stores
 
 def choose_store_branch(store_name):
