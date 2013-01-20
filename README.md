@@ -1,3 +1,5 @@
+Store-Hours
+------------------------------------------------------------------------------------------------------------------
 Store-Hours helps you find out the business hours of stores and banks near you. 
 You can choose a specific store and find out the hours of branches of that store near you. 
 Or you can get the hours of stores and banks near you. 
