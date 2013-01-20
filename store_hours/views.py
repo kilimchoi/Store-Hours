@@ -54,13 +54,12 @@ def hours_display(request, store_branch_name, address):
 	now = datetime.now()
 	hour = now.hour
 	if time_list and hour >= time_list[0] and hour <= time_list[1] + 12:
+		print "enters time conditional"
 		open_boolean = True
 	if mon_fri_list and hour >= mon_fri_list[0] and hour <= mon_fri_list[1] + 12:
 		open_boolean = True
 	if sat_list and hour >= sat_list[0] and hour <= sat_list[1] + 12:
 		open_boolean = True
-	else:
-		open_boolean = False
 	if open_boolean:
 		open_or_not = "OPEN"
 	else:
