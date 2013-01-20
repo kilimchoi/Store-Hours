@@ -123,6 +123,7 @@ def choose_best(stores):
 	max_rating_stores = {}
 	first_time = False
 	prev = ""
+	curr = ""
 	temp_stores = stores
 	stores = [store for store in stores if 'rating' in store]
 	reversed(sorted(stores, key=lambda store:store['rating']))
