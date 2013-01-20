@@ -26,7 +26,7 @@ def hours_display(request, store_branch_name, address):
 			time = "24 hours"
 		if "6310 College" in address:
 			time = "24 hours"
-	if store_branch_name == "Whole Foods Market":
+	if store_branch_name == "Whole Foods Market" or store_branch_name == "Whole foods Market" :
 		time = "8 am - 10 pm"
 	if store_branch_name == "Andronico's":
 		if "1850Solano" in address:
@@ -49,17 +49,19 @@ def hours_display(request, store_branch_name, address):
 		sat_time = "9 am - 6 pm"
 		sun_time = "CLOSED"
 	time_list = [int(t) for t in time.split() if t.isdigit()]
+	weekday = datetime.today().weekday()
 	mon_fri_list = [int(t) for t in mon_fri_time.split() if t.isdigit()]
 	sat_list = [int(t) for t in sat_time.split() if t.isdigit()]
 	now = datetime.now()
 	hour = now.hour
 	if time_list and hour >= time_list[0] and hour <= time_list[1] + 12:
-		print "enters time conditional"
 		open_boolean = True
 	if mon_fri_list and hour >= mon_fri_list[0] and hour <= mon_fri_list[1] + 12:
-		open_boolean = True
+		if weekday <= 4 and weekday >= 0:
+			open_boolean = True
 	if sat_list and hour >= sat_list[0] and hour <= sat_list[1] + 12:
-		open_boolean = True
+		if weekday == 5:
+			open_boolean = True
 	if open_boolean:
 		open_or_not = "OPEN"
 	else:
@@ -124,15 +126,14 @@ def choose_best(stores):
 		stores = temp_stores
 	for store in stores:
 		if 'opening_hours' in store:
-			if store['opening_hours']['open_now']:
-				curr = store
-				if first_time:
-					if store['name'] not in max_rating_stores:
-						max_rating_stores[store['name']] = store
-				else:
-					first_time = True
-					prev = curr
+			curr = store
+			if first_time:
+				if store['name'] not in max_rating_stores:
 					max_rating_stores[store['name']] = store
+			else:
+				first_time = True
+				prev = curr
+				max_rating_stores[store['name']] = store
         prev = curr
 	return max_rating_stores
 
@@ -199,12 +200,11 @@ def choose_best_five(stores):
 		stores = temp_stores
 	for store in stores:
 		if 'opening_hours' in store:
-			if store['opening_hours']['open_now']:
-				if counter == 5:
-					break
-				else:
-					max_rating_stores.append(store)
-					counter = counter + 1
+			if counter == 5:
+				break
+			else:
+				max_rating_stores.append(store)
+				counter = counter + 1
 	return max_rating_stores
 
 def choose_store_branch(store_name):
