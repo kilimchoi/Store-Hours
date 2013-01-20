@@ -38,7 +38,7 @@ def hours_display(request, store_branch_name, address):
 		mon_fri_time = "9 am - 6 pm" 
 		sat_time = "9 am - 2 pm"
 		sun_time = "CLOSED"
-	if store_branch_name == "Chase Bank":
+	if store_branch_name == "Chase Bank" or store_branch_name == "Chase" or store_branch_name == "chase" or store_branch_name == "chase bank":
 		if_bank = True
 		mon_fri_time = "9 am - 6 pm" 
 		sat_time = "9 am - 4 pm"
